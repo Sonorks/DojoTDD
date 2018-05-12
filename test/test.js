@@ -42,7 +42,7 @@ var codebreaker=require('../functionTest/codebreaker');
                 assert.equal(codebreaker.validacionTipo("4532"),true);        
             });
             it('Validacion en general error tipo de dato',function(){
-                assert.equal(codebreaker.validarCadena("13s2"),"La cadena solo puede contener caracteres numericos");        
+                assert.equal(codebreaker.validarCadena("13*2"),"La cadena solo puede contener caracteres numericos");        
             });
             it('Validacion en general error tamaño cadena',function(){
                 assert.equal(codebreaker.validarCadena("134092"),"La cadena solo puede contener 4 digitos exactos");        
