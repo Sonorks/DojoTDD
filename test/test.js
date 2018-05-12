@@ -1,44 +1,56 @@
 var assert = require('assert');
-var romanConvert=require('../functionTest/romanConverter');
+var codebreaker=require('../functionTest/codebreaker');
 
-describe('RomanTest',function(){
-    describe('NumbertoRomanTest',function(){
-        it('converts 1 to roman',function(){
-            assert.equal(romanConvert.toRoman(1),"I");        
-        });   
-
-        it('converts 10 to roman',function(){
-            assert.equal(romanConvert.toRoman(10),"X");        
+    describe('Code breaker',function(){
+        describe('Funcionalidades',function(){
+            it('Todos los parametros son X',function(){
+                assert.equal(codebreaker.cb("4321"),"XXXX");        
+            });
+            it('Todos los parametros son _',function(){
+                assert.equal(codebreaker.cb("1234"),"----");        
+            });
+            it('Todos los parametros son incorrectos',function(){
+                assert.equal(codebreaker.cb("5678"),"");        
+            });
+            it('3 parametros en posiciones correctas',function(){
+                assert.equal(codebreaker.cb("4329"),"XXX");        
+            });
+            it('3 parametros en posiciones correctas',function(){
+                assert.equal(codebreaker.cb("4120"),"XX-");        
+            });
         });
-
-        it('converts 50 to roman',function(){
-            assert.equal(romanConvert.toRoman(50),"L");        
-        });
-
-        it('converts 100 to roman',function(){
-            assert.equal(romanConvert.toRoman(100),"C");        
-        });
-        
+        describe('Restricciones',function(){
+            it('Validacion de digitos repetidos',function(){
+                assert.equal(codebreaker.validacionRepetidos("4331"),false);        
+            });
+            it('Validacion de digitos diferentes entre si',function(){
+                assert.equal(codebreaker.validacionRepetidos("1568"),true);        
+            });
+            it('Validacion de la cadena de mayor tamaño',function(){
+                assert.equal(codebreaker.validacionTamaño("156834"),false);        
+            });
+            it('Validacion de la cadena de menor tamaño',function(){
+                assert.equal(codebreaker.validacionTamaño("156"),false);        
+            });
+            it('Validacion de la cadena de menor tamaño',function(){
+                assert.equal(codebreaker.validacionTamaño(""),false);        
+            });
+            it('Validacion tipo de caracter numerico',function(){
+                assert.equal(codebreaker.validacionTipo("45d2"),false);        
+            });
+            it('Validacion tipo de caracter numerico',function(){
+                assert.equal(codebreaker.validacionTipo("4532"),true);        
+            });
+            it('Validacion en general error tipo de dato',function(){
+                assert.equal(codebreaker.validarCadena("13s2"),"La cadena solo puede contener caracteres numericos");        
+            });
+            it('Validacion en general error tamaño cadena',function(){
+                assert.equal(codebreaker.validarCadena("134092"),"La cadena solo puede contener 4 digitos exactos");        
+            });
+            it('Validacion en general error numeros repetidos',function(){
+                assert.equal(codebreaker.validarCadena("1334"),"La cadena no puede contener digitos repetidos");        
+            });
+        }); 
     });
-
-    describe('RomanToNumberTest',function(){
-        it('converts V to number',function(){
-            assert.equal(romanConvert.fromRoman("V"),5);        
-        });   
-
-        it('converts XV to number',function(){
-            assert.equal(romanConvert.fromRoman("XV"),15);        
-        });
-
-        it('converts LIV to number',function(){
-            assert.equal(romanConvert.fromRoman("LIV"),54);        
-        });
-
-        it('converts C to number',function(){
-            assert.equal(romanConvert.fromRoman("C"),100);        
-        });
-        
-    });
-});
 
 
