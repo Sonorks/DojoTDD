@@ -49,7 +49,7 @@ var codebreaker=require('../functionTest/codebreaker');
             });
             it('Validacion en general error numeros repetidos',function(){
                 assert.equal(codebreaker.validarCadena("1334"),"La cadena no puede contener digitos repetidos");        
-            });
+            }); 
         }); 
     });
 
